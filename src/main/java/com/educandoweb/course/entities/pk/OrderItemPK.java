@@ -5,11 +5,7 @@ import com.educandoweb.course.entities.Product;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
 @Embeddable
 public class OrderItemPK {
 
@@ -22,4 +18,20 @@ public class OrderItemPK {
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
 }
