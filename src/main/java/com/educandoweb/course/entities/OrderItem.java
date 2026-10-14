@@ -33,7 +33,7 @@ public class OrderItem {
         return id.getOrder();
     }
 
-    public Product getProduct() {
+     public Product getProduct() {
         return id.getProduct();
     }
 
