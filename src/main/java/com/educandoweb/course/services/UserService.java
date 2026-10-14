@@ -3,7 +3,11 @@ package com.educandoweb.course.services;
 import com.educandoweb.course.entities.User;
 import com.educandoweb.course.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -24,5 +28,9 @@ public class UserService {
 
     public User insert(User obj) {
         return userRepository.save(obj);
+    }
+
+    public void delete(Long id) {
+        userRepository.deleteById(id);
     }
 }
