@@ -2,10 +2,12 @@ package com.educandoweb.course.entities;
 
 import com.educandoweb.course.entities.enuns.OrderStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -32,7 +34,11 @@ public class Order implements Serializable {
     private User client;
 
     @OneToMany(mappedBy = "id.order")
-    private Set<OrderItem> items = new java.util.HashSet<>();
+    private Set<OrderItem> items = new HashSet<>();
+
+    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
+    @JoinColumn(name = "payment_id")
+    private Payment payment;
 
     public OrderStatus getOrderStatus() {
         return OrderStatus.valueOf(orderStatus);
@@ -50,4 +56,13 @@ public class Order implements Serializable {
         setOrderStatus(orderStatus);
         this.client = client;
     }
+
+    public Double getTotal() {
+        double sum = 0.0;
+        for (OrderItem item : items) {
+            sum += item.getSubTotal();
+        }
+        return sum;
+    }
+
 }
