@@ -1,0 +1,21 @@
+spring:
+
+  datasource:
+    url: postgresql://_d0291f13fb2032d4:_9eba6368bc5b71d0c26342aa03569c@primary.giovanni-order-db--cj6ybc4ywxr4.addon.code.run:27980/_7c83580aabd1?sslmode=require
+    username: postgres
+    password: 1234567
+
+  jpa:
+    properties:
+      hibernate:
+        format_sql: false
+        jdbc:
+          lob:
+            non_contextual_creation: true
+    hibernate:
+      ddl-auto: none
+    show_sql: false
+
+jwt:
+  secret: MYSECRET
+  expiration: 3600000
